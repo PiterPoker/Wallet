@@ -6,25 +6,24 @@ namespace Wallet.Domain.Models.AccountOfPerson;
 
 public class Account : FinancialBase
 {
-    public Account(long id, decimal balance, Currency currency, string description, long profileId) 
-        : base(id, balance, currency)
+    public Account(long id, decimal balance, Currency currency, string description, long profileId) : base(id, balance, currency)
     {
         Description = description ?? throw new AccountException($"Property {nameof(description)} cannot be empty", new AggregateException(nameof(description)));
         ProfileId = profileId > 0 ? profileId : throw new AccountException($"Property {nameof(profileId)} must be greater than 0", new AggregateException(nameof(description)));
     }
-    
+
     /// <summary>
     /// Описание счета пользователя
     /// </summary>
     public string Description { get; protected set; }
-    
+
     /// <summary>
     ///  Id профиля пользователя
     /// </summary>
     public long ProfileId { get; protected set; }
-    
+
     /// <summary>
-    /// Поподнить счет
+    /// Пополнить счет
     /// </summary>
     /// <param name="amount">сумма</param>
     /// <exception cref="AccountException">Ошибка когда не выполнены условия</exception>

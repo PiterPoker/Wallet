@@ -3,10 +3,16 @@ using Wallet.Domain.SeedWork;
 
 namespace Wallet.Domain.Models.BaseEntity;
 
-public abstract class FinancialBase(long id, decimal balance, Currency currency) : Entity<long>(id)
+public abstract class FinancialBase : Entity<long>
 {
-    public decimal Balance { get; protected set; } = balance;
-    public Currency Currency { get;  protected set; } = currency;
+    public FinancialBase(long id, decimal balance, Currency currency) : base(id)
+    {
+        Balance = balance;
+        Currency = currency;
+    }
+
+    public decimal Balance { get; protected set; }
+    public Currency Currency { get;  protected set; }
 
     public virtual void ChangeCurrency(Currency currency)
     {

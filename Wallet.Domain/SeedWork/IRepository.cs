@@ -1,13 +1,13 @@
 namespace Wallet.Domain.SeedWork;
 
-public interface IRepository<TEntity,in TId>
-    where TEntity : Entity<TId> 
+public interface IRepository<T,in TId>
+    where T : Entity<TId> 
     where TId : struct
 {
-    Task<IEnumerable<TEntity>> GetAll();
-    Task<TEntity> GetByIdAsync(TId id);
-    Task UpdateAsync(TEntity entity);
-    Task AddAsync(TEntity entity);
+    Task<IEnumerable<T>> GetAllAsync();
+    Task<T> GetByIdAsync(TId id);
+    Task UpdateAsync(T entity);
+    Task AddAsync(T entity);
     Task DeleteAsync(TId id);
-    Task SaveAsync();
+    Task SaveAsync(); 
 }

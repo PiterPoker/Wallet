@@ -2,7 +2,11 @@ using Wallet.Domain.SeedWork;
 
 namespace Wallet.Domain.Models.WalletOfFamily;
 
-public class Owner(long id, string name) : Entity<long>(id)
+public class Owner : Entity<long>
 {
-    public string Name { get; set; } = name;
+    public Owner(long id, string name) : base(id)
+    {
+        Name = name;
+    }
+    public string Name { get; set; }
 }

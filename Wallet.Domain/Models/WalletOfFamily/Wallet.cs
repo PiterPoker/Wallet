@@ -15,7 +15,9 @@ public class Wallet : FinancialBase
         Description = description ?? throw new WalletException($"Property {nameof(description)} cannot be empty", new AggregateException(nameof(description)));
         Family = family ?? throw new WalletException($"Property {nameof(family)} cannot be null", new ArgumentNullException(nameof(family)));
     }
-    
+
+    // Пустой конструктор
+    protected Wallet() : base(default, default, default) { }
     /// <summary>
     /// Описание счета
     /// </summary>

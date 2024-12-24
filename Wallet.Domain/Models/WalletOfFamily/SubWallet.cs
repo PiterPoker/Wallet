@@ -5,21 +5,24 @@ namespace Wallet.Domain.Models.WalletOfFamily;
 
 public class SubWallet : Wallet
 {
-    public SubWallet(Wallet parentWallet, long id, decimal balance, Currency currency, string description, Family family)
+    public SubWallet(Wallet parentWallet, long id, decimal balance, Currency currency, string description, Family family) 
         : base(id, balance, currency, description, family)
     {
         ParentWallet = parentWallet ?? throw new SubWalletException($"Property {nameof(parentWallet)} cannot be null", new ArgumentNullException(nameof(parentWallet)));
     }
-    
+
+    // Пустой конструктор
+    protected SubWallet() : base() { }
+
     /// <summary>
-    /// Радительский кошелёк
+    /// Родительский кошелёк
     /// </summary>
     public Wallet ParentWallet { get; protected set; }
     /// <summary>
     /// Персональный кошелёк
     /// </summary>
     public bool IsPrivateWallet => _familyMembers.Count != 0;
-    private List<Owner> _familyMembers= [];
+    private List<Owner> _familyMembers = [];
     /// <summary>
     /// Члены семьи которые могут использовать кошелёк
     /// </summary>
@@ -77,8 +80,8 @@ public class SubWallet : Wallet
     /// Списать деньги со счёта
     /// </summary>
     /// <param name="amount">Сумма</param>
-    /// <param name="owner">Пользователь кошнлька</param>
-    /// <exception cref="SubWalletException">Ошибка когда пользователь не прошелпроверку</exception>
+    /// <param name="owner">Пользователь кошелька</param>
+    /// <exception cref="SubWalletException">Ошибка когда пользователь не прошел проверку</exception>
     public virtual void WriteOffMoney(decimal amount, Owner owner)
     {
         if (!IsPrivateWallet)
