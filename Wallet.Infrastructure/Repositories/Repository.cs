@@ -7,7 +7,7 @@ public class Repository<T, TId> : IRepository<T, TId>
     where T : Entity<TId>
     where TId : struct
 {
-    private readonly WalletDBContext _context;
+    protected readonly WalletDBContext _context;
     private readonly DbSet<T> _dbSet;
 
     public Repository(WalletDBContext context)
@@ -16,36 +16,36 @@ public class Repository<T, TId> : IRepository<T, TId>
         _dbSet = context.Set<T>();
     }
 
-    public async Task<IEnumerable<T>> GetAllAsync()
+    public virtual IQueryable<T> GetAll()
     {
-        return await _dbSet.ToListAsync();
+        return _dbSet.AsQueryable<T>();
     }
 
-    public async Task<T> GetByIdAsync(TId id)
+    public virtual async Task<T> GetByIdAsync(TId id, CancellationToken cancellation)
     {
-        return await _dbSet.FindAsync(id);
+        return await _dbSet.FirstAsync(entity => entity.Id.Equals(id), cancellation);
     }
 
-    public async Task AddAsync(T entity)
+    public virtual async Task AddAsync(T entity, CancellationToken cancellation)
     {
-        await _dbSet.AddAsync(entity);
+        await _dbSet.AddAsync(entity, cancellation);
     }
 
-    public Task UpdateAsync(T entity)
+    public virtual Task UpdateAsync(T entity)
     {
         _context.Entry(entity).State = EntityState.Modified;
         return Task.CompletedTask;
     }
 
-    public async Task DeleteAsync(TId id)
+    public virtual async Task DeleteAsync(TId id, CancellationToken cancellation)
     {
-        var entity = await _dbSet.FindAsync(id);
+        var entity = await _dbSet.FindAsync(id, cancellation);
         if (entity is not null)
             _dbSet.Remove(entity);
     }
 
-    public async Task SaveAsync()
+    public virtual async Task SaveAsync(CancellationToken cancellation)
     {
-        await _context.SaveChangesAsync();
+        await _context.SaveChangesAsync(cancellation);
     }
 }
