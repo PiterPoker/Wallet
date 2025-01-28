@@ -1,8 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.Domain", "Wallet.Domain\Wallet.Domain.csproj", "{76B8A097-1556-47EB-A29F-7F4C08DC3708}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Domain", "Wallet.Domain\Wallet.Domain.csproj", "{76B8A097-1556-47EB-A29F-7F4C08DC3708}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallet.Infrastructure", "Wallet.Infrastructure\Wallet.Infrastructure.csproj", "{433C5D7B-B893-486E-99CB-58342288C67E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.Infrastructure", "Wallet.Infrastructure\Wallet.Infrastructure.csproj", "{433C5D7B-B893-486E-99CB-58342288C67E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wallet.API", "Wallet.API\Wallet.API.csproj", "{DC81B193-616E-4D3E-A656-8A6E754514A0}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4113EF93-2A85-4DD9-A400-3F5B8868ADDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +25,16 @@ Global
 		{433C5D7B-B893-486E-99CB-58342288C67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{433C5D7B-B893-486E-99CB-58342288C67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{433C5D7B-B893-486E-99CB-58342288C67E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC81B193-616E-4D3E-A656-8A6E754514A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC81B193-616E-4D3E-A656-8A6E754514A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC81B193-616E-4D3E-A656-8A6E754514A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC81B193-616E-4D3E-A656-8A6E754514A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4113EF93-2A85-4DD9-A400-3F5B8868ADDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4113EF93-2A85-4DD9-A400-3F5B8868ADDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4113EF93-2A85-4DD9-A400-3F5B8868ADDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4113EF93-2A85-4DD9-A400-3F5B8868ADDF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
