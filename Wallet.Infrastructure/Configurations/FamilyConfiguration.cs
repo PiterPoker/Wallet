@@ -4,7 +4,7 @@ using Wallet.Domain.Models.WalletOfFamily;
 
 namespace Wallet.Infrastructure.Configurations;
 
-internal class FamilyConfiguration 
+internal class FamilyConfiguration
     : IEntityTypeConfiguration<Family>
 {
     public void Configure(EntityTypeBuilder<Family> builder)
@@ -13,5 +13,8 @@ internal class FamilyConfiguration
         builder.Property(f => f.Name)
                .IsRequired()
                .HasMaxLength(255);
+        builder.HasOne(f => f.HeadMember)
+            .WithMany()
+            .HasForeignKey("HeadMemberId");
     }
 }
