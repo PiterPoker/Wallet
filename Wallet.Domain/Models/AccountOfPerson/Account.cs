@@ -1,6 +1,6 @@
 using Wallet.Domain.Exceptions;
 using Wallet.Domain.Models.BaseEntity;
-using Wallet.Domain.Models.Enumes;
+using Wallet.Domain.Models.Enums;
 
 namespace Wallet.Domain.Models.AccountOfPerson;
 
@@ -11,6 +11,9 @@ public class Account : FinancialBase
         Description = description ?? throw new AccountException($"Property {nameof(description)} cannot be empty", new AggregateException(nameof(description)));
         ProfileId = profileId > 0 ? profileId : throw new AccountException($"Property {nameof(profileId)} must be greater than 0", new AggregateException(nameof(description)));
     }
+
+    // Пустой конструктор
+    protected Account() : base(default, default, default) { }
 
     /// <summary>
     /// Описание счета пользователя
@@ -38,7 +41,12 @@ public class Account : FinancialBase
             throw new AccountException(e.Message, e);
         }
     }
-    
+
+    public void SetDescription(string description)
+    {
+        Description = description;
+    }
+
     /// <summary>
     /// Списать деньги со счета
     /// </summary>
@@ -49,13 +57,13 @@ public class Account : FinancialBase
     {
         if (ProfileId != profileId)
             throw new AccountException("Profile id mismatch");
-        
+
         if (amount < 0)
             throw new AccountException($"Property {nameof(amount)} cannot be negative", new AggregateException(nameof(amount)));
-        
+
         if (amount > Balance)
             throw new AccountException($"Property {nameof(amount)} cannot be greater than balance", new AggregateException(nameof(amount)));
-        
+
         Balance -= amount;
     }
 }

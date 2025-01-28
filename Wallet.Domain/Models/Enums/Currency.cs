@@ -1,4 +1,4 @@
-namespace Wallet.Domain.Models.Enumes;
+namespace Wallet.Domain.Models.Enums;
 
 public enum Currency
 {
